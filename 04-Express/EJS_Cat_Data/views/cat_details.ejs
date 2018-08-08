@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cat Details</title>
+    <link rel="stylesheet" type="text/css" href="http://localhost:2000/style.css">
+</head>
+<body>
+    <main>
+        <h1><u>Rap Sheet</u></h1>        
+        <div id="frameimg">            
+            <img src='<%= data.image %>' alt='cat'>
+            <h2><%= data.name %></h2>
+            <p>Owner: <%= data.owner %></p>
+            <p>Age: <%= data.age %></p>
+            <p>Crimes:</p>
+            <ul>                    
+                <% for (var i in data.crimes){ %>
+                <li><%= data.crimes[i] %></li>
+                <% } %>
+            </ul>       
+        </div>
+        <br><br>
+        <a href="/cats">Back to Cats Most Wanted</a>    
+    </main>
+    
+</body>
+</html>

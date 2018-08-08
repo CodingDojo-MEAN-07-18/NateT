@@ -1,0 +1,6 @@
+html, body {margin:0px; padding:0px;}
+body {background-color: grey;}
+main {margin: 10px auto 0px; width: 80%; text-align: center; background-color: #fff; border-radius: 25px; padding: 5px 50px;}
+form {margin-top: 15px;}
+.btn {background-color:green; color:#fff; cursor: pointer; padding: 10px;}
+img {max-width:256; display:inline-block;}

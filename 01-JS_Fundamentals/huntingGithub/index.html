@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="  crossorigin="anonymous"></script>  
+    <style>
+        #clearBtn {display:none;}
+
+        #main {border: 1px solid black; display: block; margin:auto; width:20%; text-align: center; padding: 10px;}
+    </style>  
+</head>
+<body>
+    
+    <div id="main">
+        
+        <div id="selectorBtn">
+            <button id="callBtn">Get GitHub data using a callback</button>
+            <!-- <br> or <br>
+            <button id="promBtn" class="selectorBtn">Get GitHub data using a promises</button> -->
+        </div>
+        
+        <h1 id="name"></h1>
+        <button id="clearBtn">Clear</button>
+    </div>
+    
+    
+    
+
+    <script>
+        $( document ).ready(function() {
+
+            $("#callBtn").click(function(){
+                $.get("https://api.github.com/users/TKNate", displayName)
+                // Notice that displayName is a function that takes in 1 parameter (this is the data that comes back from the API)
+
+                function displayName(data) {
+                    console.log(data);      
+                    $("#name").append(data.name);
+                    $("#selectorBtn").hide();                    
+                    $("#clearBtn").show();
+                }
+            });
+
+        });
+
+        $("#clearBtn").click(function(){                 
+            $("#name").empty();            
+            $("#clearBtn").hide();
+            $("#selectorBtn").show();
+        });
+
+        
+
+
+        // const promise = new Promise((resolve, reject) => {
+        //     const request = new XMLHttpRequest();
+        //     request.open('GET', 'https://api.github.com/users/TKNate');
+
+        //     request.onload = () => {
+        //         if (request.status === 200) {
+        //         resolve(request.response); // we got data here, so resolve the Promise
+        //         } else {
+        //         reject(Error(request.statusText)); // status is not 200 OK, so reject
+        //         }
+        //     };
+
+        //     request.onerror = () => {
+        //         reject(Error('Error fetching data.')); // error occurred, reject the  Promise
+        //     };
+
+        //     request.send(); // send the request
+
+
+        //     promise.then((data) => {
+        //     console.log('Got data! Promise fulfilled.');
+        //     document.body.textContent = JSON.parse(data).value.joke;
+        //     }, (error) => {
+        //     console.log('Promise rejected.');
+        //     console.log(error.message);
+            
+        // });
+
+    </script>        
+</body>
+</html>

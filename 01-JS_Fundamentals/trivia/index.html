@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trivia</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>    
+        html, body {margin:0px; padding:0px;}
+        #showAnswBtn {display:none;}        
+        #main {text-align: center;}
+        hr {width: 100%;}
+        #showAnswBtn {background-color: lightgreen; padding: 10px; font-weight: bold;}        
+        .green {color: darkgreen; font-weight: bold; font-size:22px;}
+    </style>
+</head>
+<body>
+    <div id="main">
+        <h1>Trivia</h1>
+        <button id="startBtn">Start Game</button>
+        <button id="showAnswBtn">Show Answers</button>                
+        <hr>
+    </div>
+    <div id="questions" style="width:80%;margin: auto;"></p>
+
+    <script >
+        $(document).ready(function(){
+        
+            $('#startBtn').click(function() { 
+                $.get("https://opentdb.com/api.php?amount=5", displayQuestions);
+                
+            });
+            
+            function displayQuestions(data) {
+                console.log(data);
+                results = data.results;
+
+                
+                $('#showAnswBtn').show();
+                $('#startBtn').css("display", "none");
+                for(let i = 0; i < results.length; i++){
+                    $('#questions').append("<h2>" +results[i].question+ "</h2>")
+                    
+                    // Find Answers
+                    var correctAnswer = "<li class='correct'>" + results[i].correct_answer + "</li>";
+                    //console.log('Correct Answer:', correctAnswer);                                       
+                    
+                    var incorrectAnswers = "<li>" + results[i].incorrect_answers+ "</li>";
+                    //console.log('Incorrect Answers:', incorrectAnswers);  
+
+                    
+                    //Group all options & parse                    
+                    allOptions = $.parseHTML("<ul>"+ incorrectAnswers + correctAnswer +"</ul>");
+
+                                        
+                    for(let j = 0; j < allOptions.length; j++){
+                        $('#questions').append(allOptions[j]);                        
+                    }                    
+                }                
+            }
+
+            $(document).on('#showAnswBtn').click(function() { 
+                $('li.correct').addClass("green");
+                $('#showAnswBtn').hide();
+                $(this).hide();                
+             });
+        });
+    </script>
+
+</body>
+</html>

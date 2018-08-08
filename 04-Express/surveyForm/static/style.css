@@ -1,0 +1,13 @@
+html, body {margin:0px; padding:0px;}
+body {background-color: grey;}
+main {margin: 10px auto 0px; width: 80%; text-align: center; background-color: #fff; border-radius: 25px; padding: 5px 50px;}
+form {margin-top: 15px;}
+.btn {background-color:green; color:#fff; cursor: pointer; padding: 10px;}
+img {max-width:256; display:inline-block;}
+h2 {text-transform: uppercase; font-size: 36px; margin-bottom:0px;}
+#frameimg{border:15px solid #000; width:300px; margin:auto;transform: rotate(-4deg);}
+ul {list-style-type: none; text-align: left;}
+p {text-align: left; margin-left:30px;}
+.inpt {text-align: center; margin-bottom: 7px;}
+.sinpt {margin-bottom: 10px;}
+.cinpt {margin-bottom: 10px;}
